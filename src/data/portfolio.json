@@ -21,7 +21,7 @@
       "type": "none",
       "image_path": "",
       "image_alt": "Kevin Stev Bayer — profile photo",
-      "todo_note": "TODO: Replace 1-byte assets/images/about/profile.jpg placeholder with real photo or keep type as 'none'"
+      "todo_note": "none"
     },
     "socials": [
       {
@@ -53,7 +53,7 @@
       "category": "Programming",
       "name": "Python",
       "description": "Used for automation scripts, sensor pipelines, robotics algorithms, and simulation control with NumPy, OpenCV, Matplotlib, and rclpy.",
-      "level": "TODO",
+      "level": "intermediate",
       "evidence_projects": ["p-humanoid", "p-ros2node"],
       "tags": ["NumPy", "OpenCV", "Matplotlib", "serial", "asyncio", "rclpy"],
       "tools": []
@@ -63,7 +63,7 @@
       "category": "Robotics Middleware",
       "name": "ROS2 & MuJoCo",
       "description": "Used for ROS2 Humble nodes, topics, services, tf2 transforms, and simulation models in MuJoCo.",
-      "level": "TODO",
+      "level": "intermediate",
       "evidence_projects": ["p-humanoid", "p-ros2node"],
       "tags": ["ROS2 (Humble)", "MuJoCo", "tf2", "rviz2", "roslaunch"],
       "tools": []
@@ -73,7 +73,7 @@
       "category": "Systems Programming",
       "name": "C++",
       "description": "Used for microcontroller firmware, hardware interfaces, and ROS2 nodes built with CMake.",
-      "level": "TODO",
+      "level": "intermediate",
       "evidence_projects": ["p-titan-ugv", "p-mechatronics-lab", "p-linefollower"],
       "tags": ["STL", "Pointers", "OOP", "CMake", "rclcpp"],
       "tools": []
@@ -83,7 +83,7 @@
       "category": "Embedded & Electronics",
       "name": "Microcontrollers, Sensors & Drivers",
       "description": "Arduino and AVR microcontrollers, Raspberry Pi computers, sensor wiring, and H-bridge motor drivers over I2C, SPI, UART, and PWM.",
-      "level": "TODO",
+      "level": "intermediate",
       "evidence_projects": ["p-titan-ugv", "p-mechatronics-lab", "p-linefollower", "p-ros2node"],
       "tags": ["Arduino", "Raspberry Pi", "BTS7960", "L298N", "HC-SR04", "MPU6050", "TCRT5000", "RPLidar A1"],
       "tools": []
@@ -93,7 +93,7 @@
       "category": "Mechanical Design",
       "name": "CAD & 3D Printing",
       "description": "SolidWorks and AutoCAD for parametric parts and robot assemblies; FDM 3D printing and laser cutting for prototypes and fixtures.",
-      "level": "TODO",
+      "level": "Learning",
       "evidence_projects": [],
       "tags": ["SolidWorks", "AutoCAD", "3D Printing", "FDM Printing", "Laser Cutting", "GD&T", "Assembly", "STEP export"],
       "tools": []
@@ -103,7 +103,7 @@
       "category": "Dev Tools",
       "name": "Software & Toolchain",
       "description": "Version control, Linux development environment, numerical computing, and simulation tools.",
-      "level": "TODO",
+      "level": "Learning",
       "evidence_projects": ["p-humanoid", "p-titan-ugv", "p-mechatronics-lab", "p-ros2node"],
       "tags": [],
       "tools": [
@@ -152,10 +152,10 @@
         { "label": "ROS2 Integration", "value": "ROS2 Humble (/joint_states, tf2, rviz2)" }
       ],
       "case_study_todos": {
-        "problem": "TODO",
-        "my_role_vs_team": "TODO",
-        "outcome": "TODO",
-        "what_i_would_change": "TODO"
+        "problem": "none",
+        "my_role_vs_team": "none",
+        "outcome": "none",
+        "what_i_would_change": "none"
       },
       "tech_tags": ["MuJoCo", "Python", "ROS2", "IK Solver", "FSM", "Trajectory Planning", "MJCF", "tf2"],
       "links": {
@@ -197,10 +197,10 @@
         { "label": "Chassis", "value": "Plywood platform" }
       ],
       "case_study_todos": {
-        "problem": "TODO",
-        "my_role_vs_team": "TODO",
-        "outcome": "TODO",
-        "what_i_would_change": "TODO"
+        "problem": "none",
+        "my_role_vs_team": "none",
+        "outcome": "none",
+        "what_i_would_change": "none"
       },
       "tech_tags": ["Arduino", "C++", "BTS7960", "LiPo", "4WD", "PWM", "RC Control", "UART"],
       "links": {
@@ -242,10 +242,10 @@
         { "label": "License", "value": "MIT" }
       ],
       "case_study_todos": {
-        "problem": "TODO",
-        "my_role_vs_team": "TODO",
-        "outcome": "TODO",
-        "what_i_would_change": "TODO"
+        "problem": "none",
+        "my_role_vs_team": "none",
+        "outcome": "none",
+        "what_i_would_change": "none"
       },
       "tech_tags": ["C++", "Arduino", "AVR", "PID", "I2C", "PWM", "HAL", "Encoder"],
       "links": {
@@ -286,10 +286,10 @@
         { "label": "Course & Deviation", "value": "Sub-5 mm steady-state deviation on 20 mm black tape" }
       ],
       "case_study_todos": {
-        "problem": "TODO",
-        "my_role_vs_team": "TODO",
-        "outcome": "TODO",
-        "what_i_would_change": "TODO"
+        "problem": "none",
+        "my_role_vs_team": "none",
+        "outcome": "none",
+        "what_i_would_change": "none"
       },
       "tech_tags": ["Arduino", "C++", "PID", "FSM", "IR Array", "L298N", "Ultrasonic"],
       "links": {
@@ -330,10 +330,10 @@
         { "label": "Mapping", "value": "2D occupancy grid on /map at 5 Hz in rviz2" }
       ],
       "case_study_todos": {
-        "problem": "TODO",
-        "my_role_vs_team": "TODO",
-        "outcome": "TODO",
-        "what_i_would_change": "TODO"
+        "problem": "none",
+        "my_role_vs_team": "none",
+        "outcome": "none",
+        "what_i_would_change": "none"
       },
       "tech_tags": ["ROS2", "Python", "rclpy", "LIDAR", "IMU", "tf2", "Complementary Filter", "rviz2"],
       "links": {
@@ -373,10 +373,10 @@
         { "label": "Status", "value": "Planned" }
       ],
       "case_study_todos": {
-        "problem": "TODO",
-        "my_role_vs_team": "TODO",
-        "outcome": "TODO",
-        "what_i_would_change": "TODO"
+        "problem": "none",
+        "my_role_vs_team": "none",
+        "outcome": "none",
+        "what_i_would_change": "none"
       },
       "tech_tags": ["KRL", "RoboDK", "KUKA", "OMPL", "Python", "Digital Twin"],
       "links": {
@@ -386,7 +386,7 @@
         "paper": ""
       },
       "media": {
-        "type": "schematic_todo",
+        "type": "none",
         "image_path": "",
         "image_alt": "KUKA KR10 industrial robot arm — path planning and digital twin",
         "todo_note": "TODO: Supply RoboDK screenshot once KUKA KR10 offline programming starts"
@@ -402,7 +402,7 @@
       "role": "B.E. — Mechatronics Engineering",
       "organisation": "KCG College of Technology",
       "location": "Chennai, Tamil Nadu",
-      "period": "Aug 2024 — May 2028",
+      "period": "Sept 2024 — May 2028",
       "year_label": "2024",
       "type": "education",
       "type_badge": "B.E. Student",
@@ -518,7 +518,7 @@
       "issuer": "Xplore.AI × KCG College of Technology",
       "year": "2025",
       "score": "Completed",
-      "url": "https://xplore.ai",
+      "url": "",
       "category": "AI / Workshop"
     },
     {
