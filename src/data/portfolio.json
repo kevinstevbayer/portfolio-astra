@@ -343,10 +343,9 @@
         "paper": ""
       },
       "media": {
-        "type": "schematic_todo",
+        "type": "none",
         "image_path": "",
-        "image_alt": "ROS2 sensor fusion rviz2 — fused pose and 2D occupancy grid",
-        "todo_note": "TODO: Supply image and dedicated GitHub repo URL for ROS2 Sensor Fusion Node"
+        "image_alt": ""
       },
       "featured": false,
       "order": 5
