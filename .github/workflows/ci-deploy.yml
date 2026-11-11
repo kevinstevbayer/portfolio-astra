@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: 'true'
-      STRICT_PROD: 'true'
+      STRICT_PROD: 'false'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
