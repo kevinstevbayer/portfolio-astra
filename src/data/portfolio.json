@@ -18,8 +18,8 @@
     "status": "Open to Internships & Research Roles",
     "status_active": true,
     "media": {
-      "type": "none",
-      "image_path": "",
+      "type": "image",
+      "image_path": "src/assets/images/projects/humanoid-sim.jpg",
       "image_alt": "Kevin Stev Bayer — profile photo"
     },
     "socials": [
@@ -52,7 +52,7 @@
       "category": "Programming",
       "name": "Python",
       "description": "Used for automation scripts, sensor pipelines, robotics algorithms, and simulation control with NumPy, OpenCV, Matplotlib, and rclpy.",
-      "level": "daily workflow",
+      "level": "intermediate",
       "evidence_projects": ["p-humanoid", "p-ros2node"],
       "tags": ["NumPy", "OpenCV", "Matplotlib", "serial", "asyncio", "rclpy"],
       "tools": []
@@ -62,7 +62,7 @@
       "category": "Robotics Middleware",
       "name": "ROS2 & MuJoCo",
       "description": "Used for ROS2 Humble nodes, topics, services, tf2 transforms, and simulation models in MuJoCo.",
-      "level": "learning",
+      "level": "intermediate",
       "evidence_projects": ["p-humanoid", "p-ros2node"],
       "tags": ["ROS2 (Humble)", "MuJoCo", "tf2", "rviz2", "roslaunch"],
       "tools": []
@@ -72,7 +72,7 @@
       "category": "Systems Programming",
       "name": "C++",
       "description": "Used for microcontroller firmware, hardware interfaces, and ROS2 nodes built with CMake.",
-      "level": "used in coursework",
+      "level": "intermediate",
       "evidence_projects": ["p-titan-ugv", "p-mechatronics-lab", "p-linefollower"],
       "tags": ["STL", "Pointers", "OOP", "CMake", "rclcpp"],
       "tools": []
@@ -82,7 +82,7 @@
       "category": "Embedded & Electronics",
       "name": "Microcontrollers, Sensors & Drivers",
       "description": "Arduino and AVR microcontrollers, Raspberry Pi computers, sensor wiring, and H-bridge motor drivers over I2C, SPI, UART, and PWM.",
-      "level": "used on hardware",
+      "level": "intermediate",
       "evidence_projects": ["p-titan-ugv", "p-mechatronics-lab", "p-linefollower", "p-ros2node"],
       "tags": ["Arduino", "Raspberry Pi", "BTS7960", "L298N", "HC-SR04", "MPU6050", "TCRT5000", "RPLidar A1"],
       "tools": []
@@ -92,8 +92,8 @@
       "category": "Mechanical Design",
       "name": "CAD & 3D Printing",
       "description": "SolidWorks and AutoCAD for parametric parts and robot assemblies; FDM 3D printing and laser cutting for prototypes and fixtures.",
-      "level": "used in coursework",
-      "evidence_projects": ["p-titan-ugv"],
+      "level": "Learning",
+      "evidence_projects": [],
       "tags": ["SolidWorks", "AutoCAD", "3D Printing", "FDM Printing", "Laser Cutting", "GD&T", "Assembly", "STEP export"],
       "tools": []
     },
@@ -102,7 +102,7 @@
       "category": "Dev Tools",
       "name": "Software & Toolchain",
       "description": "Version control, Linux development environment, numerical computing, and simulation tools.",
-      "level": "daily workflow",
+      "level": "Learning",
       "evidence_projects": ["p-humanoid", "p-titan-ugv", "p-mechatronics-lab", "p-ros2node"],
       "tags": [],
       "tools": [
@@ -151,10 +151,10 @@
         { "label": "ROS2 Integration", "value": "ROS2 Humble (/joint_states, tf2, rviz2)" }
       ],
       "case_study_todos": {
-        "problem": "Needed a reliable simulation environment to test bipedal walking algorithms.",
-        "my_role_vs_team": "Individual project developing the kinematic model and control dynamics.",
-        "outcome": "Successfully modeled basic kinematic gaits and stability controls.",
-        "what_i_would_change": "Implement reinforcement learning for more robust dynamic balancing."
+        "problem": "none",
+        "my_role_vs_team": "none",
+        "outcome": "none",
+        "what_i_would_change": "none"
       },
       "tech_tags": ["MuJoCo", "Python", "ROS2", "IK Solver", "FSM", "Trajectory Planning", "MJCF", "tf2"],
       "links": {
@@ -196,10 +196,10 @@
         { "label": "Chassis", "value": "Plywood platform" }
       ],
       "case_study_todos": {
-        "problem": "Required a high-traction platform for a robotic competition.",
-        "my_role_vs_team": "Individual project handling mechanical design, wiring, and Arduino firmware.",
-        "outcome": "Successfully built and tested the chassis with BTS7960 motor drivers and a 3S LiPo system.",
-        "what_i_would_change": "Upgrade the caster wheel to a more durable omni-directional ball transfer unit."
+        "problem": "none",
+        "my_role_vs_team": "none",
+        "outcome": "none",
+        "what_i_would_change": "none"
       },
       "tech_tags": ["Arduino", "C++", "BTS7960", "LiPo", "4WD", "PWM", "RC Control", "UART"],
       "links": {
@@ -241,10 +241,10 @@
         { "label": "License", "value": "MIT" }
       ],
       "case_study_todos": {
-        "problem": "Needed a standardized library for interacting with lab sensors and actuators.",
-        "my_role_vs_team": "Individual coursework project writing hardware abstraction layers.",
-        "outcome": "Developed a modular C++ library used for academic lab assignments.",
-        "what_i_would_change": "Add comprehensive unit tests for the hardware interfaces."
+        "problem": "none",
+        "my_role_vs_team": "none",
+        "outcome": "none",
+        "what_i_would_change": "none"
       },
       "tech_tags": ["C++", "Arduino", "AVR", "PID", "I2C", "PWM", "HAL", "Encoder"],
       "links": {
@@ -254,9 +254,9 @@
         "paper": ""
       },
       "media": {
-        "type": "none",
-        "image_path": "",
-        "image_alt": "Placeholder image description"
+        "type": "image",
+        "image_path": "src/assets/images/projects/tug-bot.jpg",
+        "image_alt": "C++ firmware architecture diagram and hardware test setup"
       },
       "featured": false,
       "order": 3
@@ -284,10 +284,10 @@
         { "label": "Course & Deviation", "value": "Sub-5 mm steady-state deviation on 20 mm black tape" }
       ],
       "case_study_todos": {
-        "problem": "Designed a fast and responsive line follower to navigate complex tracks.",
-        "my_role_vs_team": "Built the custom chassis and calibrated the PID control loop.",
-        "outcome": "Achieved stable line tracking at high motor RPMs.",
-        "what_i_would_change": "Implement automatic PID tuning for different track surfaces."
+        "problem": "none",
+        "my_role_vs_team": "none",
+        "outcome": "none",
+        "what_i_would_change": "none"
       },
       "tech_tags": ["Arduino", "C++", "PID", "FSM", "IR Array", "L298N", "Ultrasonic"],
       "links": {
@@ -297,9 +297,9 @@
         "paper": ""
       },
       "media": {
-        "type": "none",
-        "image_path": "",
-        "image_alt": "Placeholder image description"
+        "type": "image",
+        "image_path": "src/assets/images/projects/tug-bot.jpg",
+        "image_alt": "Autonomous line-following robot chassis on test track"
       },
       "featured": false,
       "order": 4
@@ -327,10 +327,10 @@
         { "label": "Mapping", "value": "2D occupancy grid on /map at 5 Hz in rviz2" }
       ],
       "case_study_todos": {
-        "problem": "Needed to accurately combine odometry and IMU data for robot localization.",
-        "my_role_vs_team": "Wrote the Python node to subscribe to sensor topics and publish fused transforms.",
-        "outcome": "Successfully published a stabilized base_link to odom tf tree.",
-        "what_i_would_change": "Migrate the node to C++ for lower latency processing."
+        "problem": "none",
+        "my_role_vs_team": "none",
+        "outcome": "none",
+        "what_i_would_change": "none"
       },
       "tech_tags": ["ROS2", "Python", "rclpy", "LIDAR", "IMU", "tf2", "Complementary Filter", "rviz2"],
       "links": {
@@ -340,9 +340,9 @@
         "paper": ""
       },
       "media": {
-        "type": "none",
-        "image_path": "",
-        "image_alt": "Placeholder image description"
+        "type": "image",
+        "image_path": "src/assets/images/projects/humanoid-sim.jpg",
+        "image_alt": "Rviz2 transform display and sensor fusion localization node output"
       },
       "featured": false,
       "order": 5
@@ -369,10 +369,10 @@
         { "label": "Status", "value": "Planned" }
       ],
       "case_study_todos": {
-        "problem": "Required precise path planning for an industrial manipulation task.",
-        "my_role_vs_team": "Participated in a training program to program the KUKA arm.",
-        "outcome": "Successfully generated and executed collision-free trajectories on the hardware.",
-        "what_i_would_change": "Integrate external vision sensors to allow for dynamic object grasping."
+        "problem": "none",
+        "my_role_vs_team": "none",
+        "outcome": "none",
+        "what_i_would_change": "none"
       },
       "tech_tags": ["KRL", "RoboDK", "KUKA", "OMPL", "Python", "Digital Twin"],
       "links": {
@@ -382,8 +382,8 @@
         "paper": ""
       },
       "media": {
-        "type": "none",
-        "image_path": "",
+        "type": "image",
+        "image_path": "src/assets/images/projects/humanoid-sim.jpg",
         "image_alt": "KUKA KR10 industrial robot arm — path planning and digital twin"
       },
       "featured": true,
@@ -513,7 +513,7 @@
       "issuer": "Xplore.AI × KCG College of Technology",
       "year": "2025",
       "score": "Completed",
-      "url": "",
+      "url": "https://kcgcollege.ac.in",
       "category": "AI / Workshop"
     },
     {
