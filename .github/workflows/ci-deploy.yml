@@ -63,7 +63,7 @@ jobs:
       - name: Check external links in built HTML with Lychee
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --verbose --no-progress --exclude-mail --exclude 'linkedin.com' './dist/**/*.html'
+          args: --verbose --no-progress --exclude 'linkedin.com' './dist/**/*.html'
           fail: true
 
       - name: Upload GitHub Pages artifact
