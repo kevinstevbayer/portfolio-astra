@@ -52,7 +52,7 @@
       "category": "Programming",
       "name": "Python",
       "description": "Used for automation scripts, sensor pipelines, robotics algorithms, and simulation control with NumPy, OpenCV, Matplotlib, and rclpy.",
-      "level": "intermediate",
+      "level": "learning",
       "evidence_projects": ["p-humanoid", "p-ros2node"],
       "tags": ["NumPy", "OpenCV", "Matplotlib", "serial", "asyncio", "rclpy"],
       "tools": []
@@ -62,7 +62,7 @@
       "category": "Robotics Middleware",
       "name": "ROS2 & MuJoCo",
       "description": "Used for ROS2 Humble nodes, topics, services, tf2 transforms, and simulation models in MuJoCo.",
-      "level": "intermediate",
+      "level": "learning",
       "evidence_projects": ["p-humanoid", "p-ros2node"],
       "tags": ["ROS2 (Humble)", "MuJoCo", "tf2", "rviz2", "roslaunch"],
       "tools": []
@@ -72,7 +72,7 @@
       "category": "Systems Programming",
       "name": "C++",
       "description": "Used for microcontroller firmware, hardware interfaces, and ROS2 nodes built with CMake.",
-      "level": "intermediate",
+      "level": "learning",
       "evidence_projects": ["p-titan-ugv", "p-mechatronics-lab", "p-linefollower"],
       "tags": ["STL", "Pointers", "OOP", "CMake", "rclcpp"],
       "tools": []
@@ -82,7 +82,7 @@
       "category": "Embedded & Electronics",
       "name": "Microcontrollers, Sensors & Drivers",
       "description": "Arduino and AVR microcontrollers, Raspberry Pi computers, sensor wiring, and H-bridge motor drivers over I2C, SPI, UART, and PWM.",
-      "level": "intermediate",
+      "level": "learning",
       "evidence_projects": ["p-titan-ugv", "p-mechatronics-lab", "p-linefollower", "p-ros2node"],
       "tags": ["Arduino", "Raspberry Pi", "BTS7960", "L298N", "HC-SR04", "MPU6050", "TCRT5000", "RPLidar A1"],
       "tools": []
