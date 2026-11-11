@@ -255,10 +255,9 @@
         "paper": ""
       },
       "media": {
-        "type": "schematic_todo",
+        "type": "none",
         "image_path": "",
-        "image_alt": "Mechatronics lab firmware — embedded C++ experiments and sensor drivers",
-        "todo_note": "TODO: Supply image for Mechatronics Lab — C++ Firmware Library"
+        "image_alt": ""
       },
       "featured": false,
       "order": 3
@@ -299,10 +298,9 @@
         "paper": ""
       },
       "media": {
-        "type": "schematic_todo",
+        "type": "none",
         "image_path": "",
-        "image_alt": "Autonomous line-following robot with 8-channel IR sensor array",
-        "todo_note": "TODO: Supply image and dedicated GitHub repo URL for Autonomous Line-Following Robot"
+        "image_alt": ""
       },
       "featured": false,
       "order": 4
