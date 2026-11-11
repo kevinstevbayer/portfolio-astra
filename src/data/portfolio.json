@@ -92,7 +92,7 @@
       "category": "Mechanical Design",
       "name": "CAD & 3D Printing",
       "description": "SolidWorks and AutoCAD for parametric parts and robot assemblies; FDM 3D printing and laser cutting for prototypes and fixtures.",
-      "level": "Learning",
+      "level": "learning",
       "evidence_projects": [],
       "tags": ["SolidWorks", "AutoCAD", "3D Printing", "FDM Printing", "Laser Cutting", "GD&T", "Assembly", "STEP export"],
       "tools": []
@@ -102,7 +102,7 @@
       "category": "Dev Tools",
       "name": "Software & Toolchain",
       "description": "Version control, Linux development environment, numerical computing, and simulation tools.",
-      "level": "Learning",
+      "level": "learning",
       "evidence_projects": ["p-humanoid", "p-titan-ugv", "p-mechatronics-lab", "p-ros2node"],
       "tags": [],
       "tools": [
