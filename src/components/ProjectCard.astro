@@ -1,0 +1,168 @@
+---
+// src/components/ProjectCard.astro
+import SpecTable from './SpecTable.astro';
+import ProjectFigure from './ProjectFigure.astro';
+
+interface Props {
+  project: {
+    id: string;
+    slug: string;
+    title: string;
+    category: string;
+    status: 'active' | 'complete' | 'upcoming';
+    status_label: string;
+    short_description: string;
+    specs: { label: string; value: string }[];
+    tech_tags: string[];
+    links: { github: string; video: string; demo: string; paper: string };
+    media: {
+      type: 'image' | 'schematic_todo';
+      image_path: string;
+      image_alt: string;
+      todo_note?: string;
+    };
+  };
+  showFigure?: boolean;
+  priority?: boolean;
+}
+
+const { project, showFigure = false, priority = false } = Astro.props;
+
+const statusSymbol =
+  project.status === 'complete' ? '●' : project.status === 'active' ? '◆' : '○';
+---
+
+<article class="project-entry">
+  <div class="entry-meta mono">
+    <span class="category-label">{project.category}</span>
+    <span class:list={['status-tag', `status-${project.status}`]}>
+      <span aria-hidden="true">[{statusSymbol}]</span>{' '}{project.status_label}
+    </span>
+  </div>
+
+  <h3 class="entry-title">
+    <a href={`/projects/${project.slug}/`}>{project.title}</a>
+  </h3>
+
+  <p class="entry-summary">{project.short_description}</p>
+
+  {
+    showFigure && (
+      <div class="entry-figure">
+        <ProjectFigure
+          projectId={project.id}
+          title={project.title}
+          media={project.media}
+          specs={project.specs}
+          priority={priority}
+        />
+      </div>
+    )
+  }
+
+  <div class="entry-specs">
+    <SpecTable
+      caption={`Key specifications for ${project.title}`}
+      specs={project.specs.slice(0, 4)}
+      hideCaptionVisually={true}
+    />
+  </div>
+
+  <ul class="tag-list mono" aria-label={`Technologies used in ${project.title}`}>
+    {project.tech_tags.map((tag) => <li>{tag}</li>)}
+  </ul>
+
+  <div class="entry-actions">
+    <a href={`/projects/${project.slug}/`} class="touch-target action-link">
+      Read case study: {project.title}
+    </a>
+    {
+      project.links.github && (
+        <a
+          href={project.links.github}
+          class="touch-target action-link secondary-link"
+          rel="noopener noreferrer"
+        >
+          GitHub repository ({project.title})
+        </a>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .project-entry {
+    padding-block: var(--space-lg);
+    border-bottom: 1px solid var(--border-hairline);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  .entry-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-xs);
+    font-size: var(--step--1);
+  }
+  .category-label {
+    color: var(--ink-muted);
+    text-transform: uppercase;
+  }
+  .status-tag {
+    font-weight: 600;
+  }
+  .status-complete {
+    color: var(--status-complete);
+  }
+  .status-active {
+    color: var(--status-active);
+  }
+  .status-upcoming {
+    color: var(--status-upcoming);
+  }
+  .entry-title {
+    margin: 0;
+  }
+  .entry-title a {
+    color: var(--ink-primary);
+    text-decoration-color: var(--accent-ui);
+  }
+  .entry-summary {
+    margin: 0;
+    color: var(--ink-secondary);
+  }
+  .tag-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    font-size: var(--step--1);
+  }
+  .tag-list li {
+    padding: 0.15rem 0.5rem;
+    background-color: var(--bg-code);
+    color: var(--ink-primary);
+    border: 1px solid var(--border-hairline);
+  }
+  .entry-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    align-items: center;
+  }
+  .action-link {
+    padding-inline: var(--space-sm);
+    border: 1px solid var(--border-strong);
+    background-color: var(--bg-panel);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 500;
+  }
+  .secondary-link {
+    background-color: var(--bg-paper);
+  }
+</style>

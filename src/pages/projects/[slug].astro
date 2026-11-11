@@ -1,0 +1,272 @@
+---
+// src/pages/projects/[slug].astro
+import { getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SpecTable from '../../components/SpecTable.astro';
+import ProjectFigure from '../../components/ProjectFigure.astro';
+
+export async function getStaticPaths() {
+  const entry = await getEntry('portfolio', 'main');
+  if (!entry) return [];
+  const projects = [...entry.data.projects].sort((a, b) => a.order - b.order);
+
+  return projects.map((project, idx) => ({
+    params: { slug: project.slug },
+    props: {
+      project,
+      prevProject: idx > 0 ? projects[idx - 1] : null,
+      nextProject: idx < projects.length - 1 ? projects[idx + 1] : null,
+    },
+  }));
+}
+
+const { project, prevProject, nextProject } = Astro.props;
+const statusSymbol =
+  project.status === 'complete' ? '●' : project.status === 'active' ? '◆' : '○';
+
+const hasTodo = (val?: string) => !val || val.trim() === 'TODO';
+---
+
+<BaseLayout
+  title={`${project.title} — Kevin Stev Bayer`}
+  description={project.short_description}
+  canonicalPath={`/projects/${project.slug}/`}
+>
+  <article class="case-study">
+    <nav aria-label="Breadcrumb" class="breadcrumb mono">
+      <a href="/#projects" class="touch-target">← All Projects</a>
+    </nav>
+
+    <header class="case-header">
+      <div class="meta-row mono">
+        <span>{project.category}</span>
+        <span class:list={['status-tag', `status-${project.status}`]}>
+          <span aria-hidden="true">[{statusSymbol}]</span>{' '}{project.status_label}
+        </span>
+      </div>
+      <h1>{project.title}</h1>
+      <p class="lead-summary">{project.short_description}</p>
+
+      {
+        (project.links.github || project.links.demo || project.links.video || project.links.paper) && (
+          <div class="repo-links mono">
+            {project.links.github && (
+              <a
+                href={project.links.github}
+                class="touch-target repo-btn"
+                rel="noopener noreferrer"
+              >
+                Source Repository (GitHub)
+              </a>
+            )}
+            {project.links.demo && (
+              <a href={project.links.demo} class="touch-target repo-btn" rel="noopener noreferrer">
+                Live Demo
+              </a>
+            )}
+            {project.links.video && (
+              <a href={project.links.video} class="touch-target repo-btn" rel="noopener noreferrer">
+                Demo Video
+              </a>
+            )}
+            {project.links.paper && (
+              <a href={project.links.paper} class="touch-target repo-btn" rel="noopener noreferrer">
+                Technical Report
+              </a>
+            )}
+          </div>
+        )
+      }
+    </header>
+
+    <div class="case-figure">
+      <ProjectFigure
+        projectId={project.id}
+        title={project.title}
+        media={project.media}
+        specs={project.specs}
+        priority={true}
+      />
+    </div>
+
+    <div class="case-body-grid">
+      <section class="specs-column" aria-labelledby="specs-heading">
+        <h2 id="specs-heading">Specifications</h2>
+        <SpecTable
+          caption={`Technical specifications for ${project.title}`}
+          specs={project.specs}
+          hideCaptionVisually={true}
+        />
+
+        <h3 class="stack-heading">Stack & Protocols</h3>
+        <ul class="tag-list mono" aria-label="Technologies used">
+          {project.tech_tags.map((tag) => <li>{tag}</li>)}
+        </ul>
+      </section>
+
+      <section class="prose-column" aria-labelledby="architecture-heading">
+        <h2 id="architecture-heading">System Architecture & Implementation</h2>
+        <p>{project.full_description}</p>
+
+        <h3>Key Technical Details</h3>
+        <ul class="highlights-list">
+          {project.highlights.map((item) => <li>{item}</li>)}
+        </ul>
+
+        {
+          !hasTodo(project.case_study_todos.problem) && (
+            <>
+              <h3>Problem & Constraints</h3>
+              <p>{project.case_study_todos.problem}</p>
+            </>
+          )
+        }
+
+        {
+          !hasTodo(project.case_study_todos.my_role_vs_team) && (
+            <>
+              <h3>Role & Authorship</h3>
+              <p>{project.case_study_todos.my_role_vs_team}</p>
+            </>
+          )
+        }
+
+        {
+          !hasTodo(project.case_study_todos.outcome) && (
+            <>
+              <h3>Result & Status</h3>
+              <p>{project.case_study_todos.outcome}</p>
+            </>
+          )
+        }
+
+        {
+          !hasTodo(project.case_study_todos.what_i_would_change) && (
+            <>
+              <h3>What I Would Change Next</h3>
+              <p>{project.case_study_todos.what_i_would_change}</p>
+            </>
+          )
+        }
+      </section>
+    </div>
+
+    <nav aria-label="Adjacent projects" class="project-pager mono">
+      {
+        prevProject ? (
+          <a href={`/projects/${prevProject.slug}/`} class="touch-target pager-link">
+            ← Previous: {prevProject.title}
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        nextProject && (
+          <a href={`/projects/${nextProject.slug}/`} class="touch-target pager-link">
+            Next: {nextProject.title} →
+          </a>
+        )
+      }
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .case-study {
+    padding-block: var(--space-lg) var(--space-2xl);
+  }
+  .breadcrumb {
+    margin-bottom: var(--space-md);
+    font-size: var(--step--1);
+  }
+  .breadcrumb a {
+    padding-inline: 0;
+  }
+  .case-header {
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--border-hairline);
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+    margin-bottom: var(--space-xs);
+  }
+  .status-complete {
+    color: var(--status-complete);
+  }
+  .status-active {
+    color: var(--status-active);
+  }
+  .status-upcoming {
+    color: var(--status-upcoming);
+  }
+  .lead-summary {
+    font-size: var(--step-1);
+    color: var(--ink-secondary);
+  }
+  .repo-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+  }
+  .repo-btn {
+    border: 1px solid var(--border-strong);
+    background-color: var(--bg-panel);
+    color: var(--ink-primary);
+    padding-inline: var(--space-md);
+    font-size: var(--step--1);
+  }
+  .case-figure {
+    margin-block: var(--space-lg);
+  }
+  .case-body-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    margin-top: var(--space-lg);
+  }
+  @media (min-width: 56rem) {
+    .case-body-grid {
+      grid-template-columns: 22rem 1fr;
+    }
+  }
+  .stack-heading {
+    margin-top: var(--space-lg);
+    font-size: var(--step-0);
+  }
+  .tag-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    font-size: var(--step--1);
+  }
+  .tag-list li {
+    padding: 0.15rem 0.5rem;
+    background-color: var(--bg-code);
+    border: 1px solid var(--border-hairline);
+  }
+  .highlights-list {
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  .project-pager {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border-hairline);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    font-size: var(--step--1);
+  }
+</style>

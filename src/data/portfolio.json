@@ -1,0 +1,552 @@
+{
+  "_meta": {
+    "schema_version": "3.1.0",
+    "last_updated": "2026-11-10",
+    "author": "Kevin Stev Bayer",
+    "note": "Single source of truth for portfolio content. Derived strictly from data/portfolio.json with review fixes."
+  },
+
+  "about": {
+    "name": "Kevin Stev Bayer",
+    "tagline": "Mechatronics Engineering Student",
+    "bio_paragraphs": [
+      "I am a Mechatronics Engineering student at KCG College of Technology, Chennai. I work across mechanical CAD, electronics, and embedded software, focusing on autonomous robotics, physics simulation, and real-time control.",
+      "I am targeting Master's programs in Robotics and Autonomous Systems at TU Munich, ETH Zürich, and KTH Royal Institute of Technology. My projects cover MJCF modelling, physics simulation, embedded C++ firmware, and ROS2 nodes."
+    ],
+    "location": "Chennai, Tamil Nadu, India",
+    "email": "kevinstevbayer123@gmail.com",
+    "status": "Open to Internships & Research Roles",
+    "status_active": true,
+    "media": {
+      "type": "none",
+      "image_path": "",
+      "image_alt": "Kevin Stev Bayer — profile photo",
+      "todo_note": "TODO: Replace 1-byte assets/images/about/profile.jpg placeholder with real photo or keep type as 'none'"
+    },
+    "socials": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/kevinstevbayer",
+        "icon": "github"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/kevin-stev-bayer/",
+        "icon": "linkedin"
+      }
+    ],
+    "tech_tags": [
+      "Python",
+      "C++",
+      "ROS2",
+      "Arduino",
+      "Raspberry Pi",
+      "MATLAB",
+      "MuJoCo",
+      "SolidWorks"
+    ]
+  },
+
+  "skills": [
+    {
+      "id": "sk-python",
+      "category": "Programming",
+      "name": "Python",
+      "description": "Used for automation scripts, sensor pipelines, robotics algorithms, and simulation control with NumPy, OpenCV, Matplotlib, and rclpy.",
+      "level": "TODO",
+      "evidence_projects": ["p-humanoid", "p-ros2node"],
+      "tags": ["NumPy", "OpenCV", "Matplotlib", "serial", "asyncio", "rclpy"],
+      "tools": []
+    },
+    {
+      "id": "sk-ros2",
+      "category": "Robotics Middleware",
+      "name": "ROS2 & MuJoCo",
+      "description": "Used for ROS2 Humble nodes, topics, services, tf2 transforms, and simulation models in MuJoCo.",
+      "level": "TODO",
+      "evidence_projects": ["p-humanoid", "p-ros2node"],
+      "tags": ["ROS2 (Humble)", "MuJoCo", "tf2", "rviz2", "roslaunch"],
+      "tools": []
+    },
+    {
+      "id": "sk-cpp",
+      "category": "Systems Programming",
+      "name": "C++",
+      "description": "Used for microcontroller firmware, hardware interfaces, and ROS2 nodes built with CMake.",
+      "level": "TODO",
+      "evidence_projects": ["p-titan-ugv", "p-mechatronics-lab", "p-linefollower"],
+      "tags": ["STL", "Pointers", "OOP", "CMake", "rclcpp"],
+      "tools": []
+    },
+    {
+      "id": "sk-hardware",
+      "category": "Embedded & Electronics",
+      "name": "Microcontrollers, Sensors & Drivers",
+      "description": "Arduino and AVR microcontrollers, Raspberry Pi computers, sensor wiring, and H-bridge motor drivers over I2C, SPI, UART, and PWM.",
+      "level": "TODO",
+      "evidence_projects": ["p-titan-ugv", "p-mechatronics-lab", "p-linefollower", "p-ros2node"],
+      "tags": ["Arduino", "Raspberry Pi", "BTS7960", "L298N", "HC-SR04", "MPU6050", "TCRT5000", "RPLidar A1"],
+      "tools": []
+    },
+    {
+      "id": "sk-cad",
+      "category": "Mechanical Design",
+      "name": "CAD & 3D Printing",
+      "description": "SolidWorks and AutoCAD for parametric parts and robot assemblies; FDM 3D printing and laser cutting for prototypes and fixtures.",
+      "level": "TODO",
+      "evidence_projects": [],
+      "tags": ["SolidWorks", "AutoCAD", "3D Printing", "FDM Printing", "Laser Cutting", "GD&T", "Assembly", "STEP export"],
+      "tools": []
+    },
+    {
+      "id": "sk-tools",
+      "category": "Dev Tools",
+      "name": "Software & Toolchain",
+      "description": "Version control, Linux development environment, numerical computing, and simulation tools.",
+      "level": "TODO",
+      "evidence_projects": ["p-humanoid", "p-titan-ugv", "p-mechatronics-lab", "p-ros2node"],
+      "tags": [],
+      "tools": [
+        "Git",
+        "VS Code",
+        "Linux",
+        "MATLAB",
+        "Simulink",
+        "Bash",
+        "Docker",
+        "GitHub Actions",
+        "rviz2",
+        "roslaunch",
+        "tf2",
+        "rosserial",
+        "MuJoCo",
+        "CoppeliaSim",
+        "Jupyter"
+      ]
+    }
+  ],
+
+  "projects": [
+    {
+      "id": "p-humanoid",
+      "slug": "humanoid-sim",
+      "title": "Humanoid Sim",
+      "category": "Simulation / ROS2",
+      "status": "active",
+      "status_label": "In Progress",
+      "short_description": "Full-body humanoid model in MuJoCo 3.x controlled in Python with a Damped Least Squares IK solver, Minimum Jerk trajectories, and a 7-state tabletop manipulation FSM.",
+      "full_description": "I simulated a full-body articulated humanoid model (22+ DOF) in MuJoCo 3.x for standing balance, Cartesian arm control, and tabletop manipulation. I wrote the control stack in Python: a Damped Least Squares (DLS) inverse kinematics solver with lambda-damping for singularity handling, a Minimum Jerk trajectory generator, and a 7-state finite state machine (idle, reach, grasp, lift, place, retract, home) with collision checks at each transition. A ROS2 Humble node publishes /joint_states and broadcasts tf2 transforms to rviz2 from a single launch file.",
+      "highlights": [
+        "MuJoCo 3.x MJCF full-body humanoid model — 22+ DOF in MuJoCo, controlled in Python",
+        "Damped Least Squares (DLS) IK solver with λ-damping for Cartesian arm control",
+        "Minimum Jerk trajectory generator for joint velocity profiles",
+        "7-step Reactive FSM: idle → reach → grasp → lift → place → retract → home with collision monitoring",
+        "ROS2 Humble bridge: /joint_states publisher + tf2 broadcast, visualised live in rviz2"
+      ],
+      "specs": [
+        { "label": "Simulator", "value": "MuJoCo 3.x (MJCF)" },
+        { "label": "Degrees of Freedom", "value": "22+ DOF" },
+        { "label": "IK Solver", "value": "Damped Least Squares (λ-damping)" },
+        { "label": "Trajectory Generator", "value": "Minimum Jerk" },
+        { "label": "Task Sequencer", "value": "7-step Reactive FSM (idle → reach → grasp → lift → place → retract → home)" },
+        { "label": "ROS2 Integration", "value": "ROS2 Humble (/joint_states, tf2, rviz2)" }
+      ],
+      "case_study_todos": {
+        "problem": "TODO",
+        "my_role_vs_team": "TODO",
+        "outcome": "TODO",
+        "what_i_would_change": "TODO"
+      },
+      "tech_tags": ["MuJoCo", "Python", "ROS2", "IK Solver", "FSM", "Trajectory Planning", "MJCF", "tf2"],
+      "links": {
+        "github": "https://github.com/kevinstevbayer/Humanoid-Sim",
+        "video": "",
+        "demo": "",
+        "paper": ""
+      },
+      "media": {
+        "type": "image",
+        "image_path": "src/assets/images/projects/humanoid-sim.jpg",
+        "image_alt": "MuJoCo viewer screenshot: a grey humanoid figure stands beside a table holding small red and green blocks; the viewer's settings panel is visible at left."
+      },
+      "featured": true,
+      "order": 1
+    },
+    {
+      "id": "p-titan-ugv",
+      "slug": "project-titan-ugv",
+      "title": "Project Titan — 3kg Competition UGV",
+      "category": "Embedded / Mechanical",
+      "status": "complete",
+      "status_label": "Complete",
+      "short_description": "4WD 3 kg class UGV built with dual BTS7960 43 A H-bridges, a 2200 mAh 80C LiPo battery, and an Arduino Nano running RC PWM and serial UART control modes.",
+      "full_description": "Project Titan is a 4WD Unmanned Ground Vehicle built for the 3 kg competition class. The plywood chassis mounts four knobby-tread wheels driven by two BTS7960 H-bridge modules (43 A peak rating each) and powered by a 2200 mAh 80C LiPo battery via an XT60 connector. The Arduino Nano runs a dual-mode control loop: RC PWM receiver decoding for manual driving and a serial UART interface for waypoint commands. Schematics, firmware, and assembly notes are on GitHub.",
+      "highlights": [
+        "4WD drivetrain — four DC gearbox motors driven by dual BTS7960 H-bridge modules (43 A peak each)",
+        "2200 mAh 80C LiPo power plant with XT60 connector",
+        "Arduino Nano dual-mode firmware: RC PWM receiver input + serial UART autonomous command interface",
+        "Plywood platform chassis",
+        "Full schematics, firmware source, and build notes documented on GitHub"
+      ],
+      "specs": [
+        { "label": "Class", "value": "3 kg competition class" },
+        { "label": "Drivetrain", "value": "4WD (four DC gearbox motors, knobby-tread wheels)" },
+        { "label": "Motor Drivers", "value": "Dual BTS7960 H-bridge modules (43 A peak each)" },
+        { "label": "Power", "value": "2200 mAh 80C LiPo with XT60 connector" },
+        { "label": "Controller", "value": "Arduino Nano (RC PWM + serial UART modes)" },
+        { "label": "Chassis", "value": "Plywood platform" }
+      ],
+      "case_study_todos": {
+        "problem": "TODO",
+        "my_role_vs_team": "TODO",
+        "outcome": "TODO",
+        "what_i_would_change": "TODO"
+      },
+      "tech_tags": ["Arduino", "C++", "BTS7960", "LiPo", "4WD", "PWM", "RC Control", "UART"],
+      "links": {
+        "github": "https://github.com/kevinstevbayer/Project-Titan-3kg-UGV",
+        "video": "",
+        "demo": "",
+        "paper": ""
+      },
+      "media": {
+        "type": "image",
+        "image_path": "src/assets/images/projects/tug-bot.jpg",
+        "image_alt": "Top-down view of the Project Titan chassis: a plywood platform carrying an orange 2200 mAh LiPo battery, two blue motor-driver boards, an RC receiver and jumper wiring, with wheels visible at the edges."
+      },
+      "featured": true,
+      "order": 2
+    },
+    {
+      "id": "p-mechatronics-lab",
+      "slug": "mechatronics-lab",
+      "title": "Mechatronics Lab — C++ Firmware Library",
+      "category": "Embedded / C++",
+      "status": "active",
+      "status_label": "Ongoing",
+      "short_description": "MIT-licensed C++ firmware repository for Arduino and AVR targets: anti-windup PID controller, 100 Hz interrupt-driven encoder reader, I2C sensor drivers, and H-bridge PWM abstraction.",
+      "full_description": "mechatronics-lab is a C++ firmware repository for Arduino and AVR microcontrollers containing reusable modules from my hardware projects: a PID controller with integral anti-windup clamping and derivative-on-measurement, an interrupt-driven quadrature encoder reader (100 Hz sample rate) for RPM and position feedback, drivers for MPU6050 (6-DOF IMU), HC-SR04 (ultrasonic), and 8-channel TCRT5000 IR arrays, and a PWM motor abstraction for L298N and BTS7960 H-bridges. All modules include serial debug output and are released under the MIT license.",
+      "highlights": [
+        "PID module with configurable Kp/Ki/Kd, anti-windup integral clamping, and derivative-on-measurement",
+        "Interrupt-driven quadrature encoder driver — accurate RPM + position at 100 Hz sample rate",
+        "I2C sensor drivers: MPU6050 (gyro + accel), HC-SR04 (ultrasonic), TCRT5000 IR array (8-ch)",
+        "PWM motor abstraction: unified API for L298N and BTS7960 H-bridge configurations",
+        "MIT-licensed, fully commented firmware"
+      ],
+      "specs": [
+        { "label": "Targets", "value": "Arduino and AVR microcontrollers" },
+        { "label": "Control Module", "value": "PID with anti-windup clamping and derivative-on-measurement" },
+        { "label": "Encoder Driver", "value": "Interrupt-driven quadrature encoder (100 Hz sample rate)" },
+        { "label": "Sensor Drivers", "value": "MPU6050 (6-DOF IMU), HC-SR04 (ultrasonic), TCRT5000 IR array (8-ch)" },
+        { "label": "Motor Abstraction", "value": "PWM HAL for L298N and BTS7960 H-bridges" },
+        { "label": "License", "value": "MIT" }
+      ],
+      "case_study_todos": {
+        "problem": "TODO",
+        "my_role_vs_team": "TODO",
+        "outcome": "TODO",
+        "what_i_would_change": "TODO"
+      },
+      "tech_tags": ["C++", "Arduino", "AVR", "PID", "I2C", "PWM", "HAL", "Encoder"],
+      "links": {
+        "github": "https://github.com/kevinstevbayer/mechatronics-lab",
+        "video": "",
+        "demo": "",
+        "paper": ""
+      },
+      "media": {
+        "type": "schematic_todo",
+        "image_path": "",
+        "image_alt": "Mechatronics lab firmware — embedded C++ experiments and sensor drivers",
+        "todo_note": "TODO: Supply image for Mechatronics Lab — C++ Firmware Library"
+      },
+      "featured": false,
+      "order": 3
+    },
+    {
+      "id": "p-linefollower",
+      "slug": "line-following-robot",
+      "title": "Autonomous Line-Following Robot",
+      "category": "Robotics",
+      "status": "complete",
+      "status_label": "Complete",
+      "short_description": "Differential-drive robot using an 8-channel TCRT5000 IR array, cascaded PID control, and an ultrasonic obstacle-avoidance state machine.",
+      "full_description": "A differential-drive robot using an 8-channel TCRT5000 IR sensor array sampled at 100 Hz via an Arduino timer interrupt. The outer control loop computes a weighted positional centroid error across the 8 sensors, and the inner loop maps that error to differential PWM commands on an L298N H-bridge. An ultrasonic FSM triggers when an obstacle is detected within 15 cm, switching from line following to a 3-step bypass manoeuvre and scan-and-pivot line re-acquisition in under 2 seconds. Tuned on a 20 mm black-tape course (Kp=1.8, Ki=0.02, Kd=0.9) to under 5 mm steady-state path deviation.",
+      "highlights": [
+        "8-channel TCRT5000 IR array sampled at 100 Hz via Arduino timer interrupt",
+        "Cascaded PID: weighted centroid outer loop → differential PWM inner loop (Kp=1.8, Ki=0.02, Kd=0.9)",
+        "Obstacle-avoidance FSM: line_follow → detect → navigate_around → re_acquire in under 2 s total",
+        "Sub-5 mm steady-state deviation on 20 mm black tape at competition speed"
+      ],
+      "specs": [
+        { "label": "Drive Type", "value": "Differential-drive via L298N H-bridge" },
+        { "label": "Line Sensor", "value": "8-channel TCRT5000 IR array (100 Hz timer interrupt)" },
+        { "label": "Control Loop", "value": "Cascaded PID (Kp=1.8, Ki=0.02, Kd=0.9)" },
+        { "label": "Obstacle FSM", "value": "Ultrasonic trigger (<15 cm): line_follow → detect → navigate_around → re_acquire (<2 s)" },
+        { "label": "Course & Deviation", "value": "Sub-5 mm steady-state deviation on 20 mm black tape" }
+      ],
+      "case_study_todos": {
+        "problem": "TODO",
+        "my_role_vs_team": "TODO",
+        "outcome": "TODO",
+        "what_i_would_change": "TODO"
+      },
+      "tech_tags": ["Arduino", "C++", "PID", "FSM", "IR Array", "L298N", "Ultrasonic"],
+      "links": {
+        "github": "",
+        "video": "",
+        "demo": "",
+        "paper": ""
+      },
+      "media": {
+        "type": "schematic_todo",
+        "image_path": "",
+        "image_alt": "Autonomous line-following robot with 8-channel IR sensor array",
+        "todo_note": "TODO: Supply image and dedicated GitHub repo URL for Autonomous Line-Following Robot"
+      },
+      "featured": false,
+      "order": 4
+    },
+    {
+      "id": "p-ros2node",
+      "slug": "ros2-sensor-fusion-node",
+      "title": "ROS2 Sensor Fusion Node",
+      "category": "ROS2",
+      "status": "active",
+      "status_label": "In Progress",
+      "short_description": "ROS2 Humble package fusing RPLidar A1 scans and MPU6050 IMU data via a complementary filter (alpha=0.98) to publish 50 Hz odometry, tf2 transforms, and a 5 Hz 2D occupancy grid.",
+      "full_description": "A ROS2 Humble package for 2D ground-robot localisation. The node subscribes to /scan (RPLidar A1) and /imu/data (MPU6050 over I2C on a Raspberry Pi), applies a complementary filter (alpha=0.98) to combine scan-derived yaw with gyroscope heading, and publishes the fused pose on /odom with a 50 Hz tf2 tree (map -> odom -> base_link). It also builds a 2D occupancy grid from scan data published at 5 Hz on /map and visualised in rviz2.",
+      "highlights": [
+        "Complementary filter (α=0.98) fuses RPLidar scan-match yaw with IMU gyroscope",
+        "Full tf2 tree: map → odom → base_link broadcast at 50 Hz via TransformBroadcaster",
+        "Real-time 2D occupancy grid at 5 Hz on /map, rendered live in rviz2",
+        "Single ros2 launch file starts Lidar driver, IMU node, fusion node, and rviz2 simultaneously"
+      ],
+      "specs": [
+        { "label": "Middleware", "value": "ROS2 Humble (Python / rclpy)" },
+        { "label": "Sensors", "value": "RPLidar A1 (/scan) + MPU6050 IMU (/imu/data over I2C to Raspberry Pi)" },
+        { "label": "Filter", "value": "Complementary filter (α=0.98)" },
+        { "label": "Pose & Transforms", "value": "/odom + tf2 tree (map → odom → base_link) at 50 Hz" },
+        { "label": "Mapping", "value": "2D occupancy grid on /map at 5 Hz in rviz2" }
+      ],
+      "case_study_todos": {
+        "problem": "TODO",
+        "my_role_vs_team": "TODO",
+        "outcome": "TODO",
+        "what_i_would_change": "TODO"
+      },
+      "tech_tags": ["ROS2", "Python", "rclpy", "LIDAR", "IMU", "tf2", "Complementary Filter", "rviz2"],
+      "links": {
+        "github": "",
+        "video": "",
+        "demo": "",
+        "paper": ""
+      },
+      "media": {
+        "type": "schematic_todo",
+        "image_path": "",
+        "image_alt": "ROS2 sensor fusion rviz2 — fused pose and 2D occupancy grid",
+        "todo_note": "TODO: Supply image and dedicated GitHub repo URL for ROS2 Sensor Fusion Node"
+      },
+      "featured": false,
+      "order": 5
+    },
+    {
+      "id": "p-kuka",
+      "slug": "kuka-kr10-path-planning",
+      "title": "Industrial Arm — KUKA KR10 Path Planning",
+      "category": "Industrial / KRL",
+      "status": "upcoming",
+      "status_label": "Planned",
+      "short_description": "Planned project: offline path planning for a KUKA KR10 R1100 six-axis arm using RoboDK, OMPL RRT-Connect, and KRL script export.",
+      "full_description": "Planned industrial robotics project covering the offline programming workflow for a KUKA KR10 R1100 six-axis arm (10 kg payload, +/-0.05 mm repeatability). The planned workflow covers importing CAD models into RoboDK, reach-envelope analysis, collision-free path generation using OMPL (RRT-Connect) via the RoboDK Python API, KRL script export for the KRC4 controller, and simulation verification prior to physical motion.",
+      "highlights": [
+        "KUKA KR10 R1100 — 6-DOF industrial arm, 10 kg payload, ±0.05 mm positional repeatability",
+        "Full offline programming workflow: RoboDK import → reach analysis → path generation → KRL export",
+        "OMPL RRT-Connect collision-free path planning integrated via RoboDK Python API",
+        "Digital twin validation loop — full simulation run required before any physical robot motion"
+      ],
+      "specs": [
+        { "label": "Manipulator", "value": "KUKA KR10 R1100 (6-DOF, 10 kg payload, ±0.05 mm repeatability)" },
+        { "label": "Controller Target", "value": "KRC4 (KRL script export)" },
+        { "label": "Planning Stack", "value": "RoboDK Python API + OMPL (RRT-Connect)" },
+        { "label": "Status", "value": "Planned" }
+      ],
+      "case_study_todos": {
+        "problem": "TODO",
+        "my_role_vs_team": "TODO",
+        "outcome": "TODO",
+        "what_i_would_change": "TODO"
+      },
+      "tech_tags": ["KRL", "RoboDK", "KUKA", "OMPL", "Python", "Digital Twin"],
+      "links": {
+        "github": "",
+        "video": "",
+        "demo": "",
+        "paper": ""
+      },
+      "media": {
+        "type": "schematic_todo",
+        "image_path": "",
+        "image_alt": "KUKA KR10 industrial robot arm — path planning and digital twin",
+        "todo_note": "TODO: Supply RoboDK screenshot once KUKA KR10 offline programming starts"
+      },
+      "featured": true,
+      "order": 6
+    }
+  ],
+
+  "journey": [
+    {
+      "id": "j-degree",
+      "role": "B.E. — Mechatronics Engineering",
+      "organisation": "KCG College of Technology",
+      "location": "Chennai, Tamil Nadu",
+      "period": "Aug 2024 — May 2028",
+      "year_label": "2024",
+      "type": "education",
+      "type_badge": "B.E. Student",
+      "status": "active",
+      "status_label": "Currently Enrolled",
+      "description": "Studying for a four-year B.E. in Mechatronics Engineering covering mechanical design, electronics, control systems, and embedded software.",
+      "highlights": [
+        "Core subjects: Robotics, Control Systems, Embedded Systems, PLC Programming, CAD/CAM",
+        "Independent study: ROS2 Humble, MuJoCo 3.x simulation, and sensor fusion on hardware"
+      ],
+      "skills": ["Python", "C++", "ROS2", "Arduino", "SolidWorks", "MATLAB", "MuJoCo", "Raspberry Pi"]
+    },
+    {
+      "id": "j-ats-intern",
+      "role": "Automation Engineer Intern",
+      "organisation": "Automotive Test Systems",
+      "location": "Chennai, Tamil Nadu",
+      "period": "Apr 2026 — May 2026",
+      "year_label": "2026",
+      "type": "activity",
+      "type_badge": "Industry Intern",
+      "status": "complete",
+      "status_label": "Completed",
+      "description": "Completed a one-month internship at Automotive Test Systems (ATS), Chennai, working on End of Line (EOL) automated test rigs for automotive component validation.",
+      "highlights": [
+        "Worked on End of Line (EOL) test rig assemblies used for automotive component validation and screening",
+        "Worked with industrial sensors, actuators, relay logic, and test bench wiring on production equipment",
+        "Documented test procedures, assisted with calibration sequences, and participated in validation sign-off for new rig builds",
+        "Observed automotive quality standards and the EOL test workflow from rig setup to pass/fail output"
+      ],
+      "skills": ["Industrial Automation", "EOL Test Rigs", "Sensor Integration", "Relay Logic", "Automotive QA", "Wiring & Harnessing"]
+    },
+    {
+      "id": "j-robotics-club",
+      "role": "Core Member — Robotics Club",
+      "organisation": "KCG Tech Robotics",
+      "location": "Chennai, Tamil Nadu",
+      "period": "Sep 2024 — Present",
+      "year_label": "2024",
+      "type": "activity",
+      "type_badge": "Club Member",
+      "status": "active",
+      "status_label": "Active Member",
+      "description": "Core member of the college robotics club, collaborating on competition robots and running introductory workshops.",
+      "highlights": [
+        "Co-built the KCG Sumo robot for regional competition using an L298N dual-driver and ultrasonic range finding",
+        "Conducted 'Arduino & Basic Robotics' workshop for first-year students",
+        "Maintain the team's shared ROS2 workspace and GitHub documentation"
+      ],
+      "skills": ["Arduino", "ROS2", "GitHub", "L298N", "HC-SR04", "Workshop facilitation"]
+    },
+    {
+      "id": "j-selflearn",
+      "role": "Pre-University Programming & Embedded Study",
+      "organisation": "Coursera · NPTEL · Personal Projects",
+      "location": "Remote",
+      "period": "Jan 2023 — Jul 2024",
+      "year_label": "2023",
+      "type": "self-study",
+      "type_badge": "Self-Study",
+      "status": "complete",
+      "status_label": "Completed",
+      "description": "Pre-college study in Python, C++, basic electronics, and Linux/ROS2 setup.",
+      "highlights": [
+        "Completed Python, C++, and electronics coursework on Coursera and NPTEL",
+        "Built standalone Arduino projects: LED matrices, DHT22 dashboards, and servo FSM controllers",
+        "Read 'Programming Robots with ROS' (O'Reilly) and set up an Ubuntu 22.04 + ROS2 Humble dual-boot system"
+      ],
+      "skills": ["Python", "C++", "Arduino", "Electronics", "Linux", "ROS2 (fundamentals)"]
+    }
+  ],
+
+  "certifications": [
+    {
+      "id": "cert-nptel-python",
+      "name": "Programming, Data Structures and Algorithms using Python",
+      "issuer": "NPTEL / IIT Madras",
+      "year": "2024",
+      "score": "Elite + Silver",
+      "url": "https://nptel.ac.in/",
+      "category": "Programming"
+    },
+    {
+      "id": "cert-ros2-udemy",
+      "name": "ROS2 for Beginners (Foxy, Humble)",
+      "issuer": "Udemy — Edouard Renard",
+      "year": "2024",
+      "score": "Completed",
+      "url": "https://www.udemy.com/",
+      "category": "Robotics"
+    },
+    {
+      "id": "cert-solidworks",
+      "name": "SolidWorks Essentials — Part Modelling",
+      "issuer": "SolidWorks / Dassault Systèmes",
+      "year": "2024",
+      "score": "CSWA Prep",
+      "url": "https://my.solidworks.com/",
+      "category": "CAD"
+    },
+    {
+      "id": "cert-google-ai",
+      "name": "Google for Education AI Implementation Program 2026",
+      "issuer": "upEducators — Google for Education Partner",
+      "year": "2026",
+      "score": "Completed",
+      "url": "https://upeducators.com",
+      "category": "AI / ML"
+    },
+    {
+      "id": "cert-xplore-ai",
+      "name": "Ideas to Intelligence — Build AI-Powered Apps",
+      "issuer": "Xplore.AI × KCG College of Technology",
+      "year": "2025",
+      "score": "Completed",
+      "url": "https://xplore.ai",
+      "category": "AI / Workshop"
+    },
+    {
+      "id": "cert-arduino",
+      "name": "Arduino Step-by-Step: Getting Serious",
+      "issuer": "Udemy — Peter Dalmaris",
+      "year": "2023",
+      "score": "Completed",
+      "url": "https://www.udemy.com/",
+      "category": "Embedded"
+    },
+    {
+      "id": "cert-matlab",
+      "name": "MATLAB Onramp + Simulink Onramp",
+      "issuer": "MathWorks",
+      "year": "2024",
+      "score": "Completed",
+      "url": "https://matlabacademy.mathworks.com/",
+      "category": "Simulation"
+    },
+    {
+      "id": "cert-cpp",
+      "name": "C++ Nanodegree",
+      "issuer": "Udacity",
+      "year": "2025",
+      "score": "In Progress",
+      "url": "https://www.udacity.com/",
+      "category": "Programming"
+    }
+  ]
+}

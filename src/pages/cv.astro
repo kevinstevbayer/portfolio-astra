@@ -1,0 +1,249 @@
+---
+// src/pages/cv.astro
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const entry = await getEntry('portfolio', 'main');
+if (!entry) {
+  throw new Error('Missing portfolio content entry "main"');
+}
+
+const { about, projects, skills, journey, certifications } = entry.data;
+const sortedProjects = [...projects].sort((a, b) => a.order - b.order);
+const education = journey.filter((j) => j.type === 'education');
+const experience = journey.filter((j) => j.type !== 'education');
+---
+
+<BaseLayout
+  title={`CV — ${about.name}`}
+  description={`Curriculum Vitae of ${about.name}, ${about.tagline}`}
+  canonicalPath="/cv/"
+>
+  <div class="cv-sheet">
+    <header class="cv-header">
+      <div>
+        <h1>{about.name}</h1>
+        <p class="mono cv-subtitle">{about.tagline} · {about.location}</p>
+      </div>
+      <ul class="cv-contact mono" aria-label="Contact details">
+        <li><a href={`mailto:${about.email}`}>{about.email}</a></li>
+        {
+          about.socials.map((s) => (
+            <li>
+              <a href={s.url} rel="noopener noreferrer">
+                {s.url.replace(/^https?:\/\//, '')}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </header>
+
+    <section class="cv-section" aria-labelledby="cv-education">
+      <h2 id="cv-education">Education</h2>
+      {
+        education.map((ed) => (
+          <div class="cv-item">
+            <div class="cv-item-head">
+              <h3>
+                {ed.role} — {ed.organisation}
+              </h3>
+              <span class="mono">{ed.period}</span>
+            </div>
+            <ul>
+              {ed.highlights.map((h) => (
+                <li>{h}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </section>
+
+    <section class="cv-section" aria-labelledby="cv-experience">
+      <h2 id="cv-experience">Experience & Activities</h2>
+      {
+        experience.map((ex) => (
+          <div class="cv-item">
+            <div class="cv-item-head">
+              <h3>
+                {ex.role} — {ex.organisation} ({ex.location})
+              </h3>
+              <span class="mono">{ex.period}</span>
+            </div>
+            <ul>
+              {ex.highlights.map((h) => (
+                <li>{h}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </section>
+
+    <section class="cv-section" aria-labelledby="cv-projects">
+      <h2 id="cv-projects">Engineering Projects</h2>
+      {
+        sortedProjects.map((p) => (
+          <div class="cv-item">
+            <div class="cv-item-head">
+              <h3>
+                <a href={`/projects/${p.slug}/`}>{p.title}</a>{' '}
+                <span class="mono status-inline">[{p.status_label}]</span>
+              </h3>
+              <span class="mono">{p.tech_tags.slice(0, 5).join(' · ')}</span>
+            </div>
+            <p class="cv-proj-desc">{p.short_description}</p>
+          </div>
+        ))
+      }
+    </section>
+
+    <section class="cv-section" aria-labelledby="cv-skills">
+      <h2 id="cv-skills">Technical Skills</h2>
+      <dl class="cv-skills-grid">
+        {
+          skills.map((sk) => (
+            <div class="cv-skill-row">
+              <dt>{sk.name}:</dt>
+              <dd class="mono">{[...sk.tags, ...sk.tools].join(', ')}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <section class="cv-section" aria-labelledby="cv-certs">
+      <h2 id="cv-certs">Certifications & Coursework</h2>
+      <ul class="cv-cert-list">
+        {
+          certifications.map((c) => (
+            <li>
+              <strong>{c.name}</strong> — {c.issuer} ({c.year}, {c.score})
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .cv-sheet {
+    padding-block: var(--space-lg) var(--space-2xl);
+  }
+  .cv-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-md);
+    padding-bottom: var(--space-md);
+    border-bottom: 2px solid var(--ink-primary);
+  }
+  .cv-subtitle {
+    margin: 0;
+    color: var(--ink-secondary);
+  }
+  .cv-contact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: var(--step--1);
+    text-align: left;
+  }
+  .cv-section {
+    padding-block: var(--space-md);
+    border-bottom: 1px solid var(--border-hairline);
+  }
+  .cv-section h2 {
+    font-size: var(--step-1);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: var(--space-sm);
+  }
+  .cv-item {
+    margin-bottom: var(--space-md);
+  }
+  .cv-item:last-child {
+    margin-bottom: 0;
+  }
+  .cv-item-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-xs);
+  }
+  .cv-item-head h3 {
+    font-size: var(--step-0);
+    margin: 0;
+  }
+  .status-inline {
+    font-size: var(--step--1);
+    font-weight: 400;
+    color: var(--ink-muted);
+  }
+  .cv-proj-desc {
+    margin: var(--space-2xs) 0 0 0;
+    color: var(--ink-secondary);
+  }
+  .cv-skills-grid {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  .cv-skill-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xs);
+  }
+  @media (min-width: 42rem) {
+    .cv-skill-row {
+      grid-template-columns: 16rem 1fr;
+    }
+  }
+  .cv-skill-row dt {
+    font-weight: 700;
+  }
+  .cv-skill-row dd {
+    margin: 0;
+    font-size: var(--step--1);
+    color: var(--ink-secondary);
+  }
+  .cv-cert-list {
+    padding-left: 1.25rem;
+    margin: 0;
+  }
+
+  /* Print stylesheet for clean A4 PDF output */
+  @media print {
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
+    :global(.site-header),
+    :global(.site-footer),
+    :global(.skip-link) {
+      display: none !important;
+    }
+    :global(body) {
+      background: #ffffff !important;
+      color: #000000 !important;
+      font-size: 10pt !important;
+      line-height: 1.4 !important;
+    }
+    .cv-sheet {
+      padding: 0 !important;
+    }
+    a {
+      color: #000000 !important;
+      text-decoration: none !important;
+    }
+    .cv-section {
+      break-inside: avoid;
+      padding-block: 6pt !important;
+    }
+  }
+</style>

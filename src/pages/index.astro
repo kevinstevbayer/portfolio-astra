@@ -1,0 +1,395 @@
+---
+// src/pages/index.astro
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SkillsMatrix from '../components/SkillsMatrix.astro';
+
+const entry = await getEntry('portfolio', 'main');
+if (!entry) {
+  throw new Error('Missing portfolio content entry "main"');
+}
+
+const { about, projects, skills, journey, certifications } = entry.data;
+const sortedProjects = [...projects].sort((a, b) => a.order - b.order);
+const featuredProject = sortedProjects.find((p) => p.id === 'p-titan-ugv') ?? sortedProjects[0];
+const otherProjects = sortedProjects.filter((p) => p.id !== featuredProject.id);
+---
+
+<BaseLayout
+  title={`${about.name} — ${about.tagline}`}
+  description={about.bio_paragraphs[0]}
+  canonicalPath="/"
+>
+  <!-- HERO + FEATURED PROJECT -->
+  <section class="hero-section" aria-labelledby="hero-heading">
+    <div class="hero-grid">
+      <div class="hero-intro">
+        <p class="meta-label">
+          {about.location} · {about.status}
+        </p>
+        <h1 id="hero-heading">{about.name}</h1>
+        <p class="hero-tagline mono">{about.tagline}</p>
+
+        {about.bio_paragraphs.map((p) => <p class="bio-prose">{p}</p>)}
+
+        <ul class="hero-links" aria-label="Direct contact and profiles">
+          <li>
+            <a href={`mailto:${about.email}`} class="touch-target primary-action mono">
+              {about.email}
+            </a>
+          </li>
+          {
+            about.socials.map((s) => (
+              <li>
+                <a href={s.url} class="touch-target secondary-action mono" rel="noopener noreferrer">
+                  {s.label}
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <a href="/cv/" class="touch-target secondary-action mono">Curriculum Vitae (CV)</a>
+          </li>
+        </ul>
+      </div>
+
+      <aside class="hero-featured" aria-label="Featured engineering build">
+        <div class="featured-header mono">
+          <span>FEATURED BUILD</span>
+          <span>SPEC SHEET 01</span>
+        </div>
+        <ProjectCard project={featuredProject} showFigure={true} priority={true} />
+      </aside>
+    </div>
+  </section>
+
+  <!-- PROJECTS INDEX -->
+  <section id="projects" class="section-block" aria-labelledby="projects-heading">
+    <div class="section-header">
+      <h2 id="projects-heading">Engineering Projects</h2>
+      <p class="meta-label">{sortedProjects.length} documented builds & simulations</p>
+    </div>
+
+    <div class="projects-grid">
+      {
+        otherProjects.map((project) => (
+          <ProjectCard project={project} showFigure={true} priority={false} />
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- SKILLS BY EVIDENCE -->
+  <section id="skills" class="section-block" aria-labelledby="skills-heading">
+    <div class="section-header">
+      <h2 id="skills-heading">Skills by Evidence</h2>
+      <p class="meta-label">Linked to repositories & builds</p>
+    </div>
+
+    <SkillsMatrix skills={skills} projects={sortedProjects} />
+  </section>
+
+  <!-- EXPERIENCE & EDUCATION -->
+  <section id="experience" class="section-block" aria-labelledby="experience-heading">
+    <div class="section-header">
+      <h2 id="experience-heading">Education & Experience</h2>
+      <p class="meta-label">Academic & industry timeline</p>
+    </div>
+
+    <ol class="timeline-list">
+      {
+        journey.map((item) => (
+          <li class="timeline-item">
+            <div class="timeline-meta mono">
+              <span class="period-text">{item.period}</span>
+              <span class="badge-text">[{item.type_badge}]</span>
+              <span class="loc-text">{item.location}</span>
+            </div>
+            <div class="timeline-content">
+              <h3>
+                {item.role} — <span class="org-name">{item.organisation}</span>
+              </h3>
+              <p>{item.description}</p>
+              <ul class="highlight-list">
+                {item.highlights.map((h) => (
+                  <li>{h}</li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="section-block" aria-labelledby="certifications-heading">
+    <div class="section-header">
+      <h2 id="certifications-heading">Coursework & Certifications</h2>
+    </div>
+
+    <table class="spec-table cert-table">
+      <caption class="sr-only">Completed and in-progress technical certifications</caption>
+      <thead>
+        <tr>
+          <th scope="col">Year</th>
+          <th scope="col">Course / Credential</th>
+          <th scope="col">Issuer</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          certifications.map((cert) => (
+            <tr>
+              <td class="mono">{cert.year}</td>
+              <th scope="row">
+                <a href={cert.url} rel="noopener noreferrer">
+                  {cert.name}
+                </a>
+              </th>
+              <td>{cert.issuer}</td>
+              <td class="mono">{cert.score}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section-block" aria-labelledby="contact-heading">
+    <div class="section-header">
+      <h2 id="contact-heading">Contact</h2>
+      <p class="meta-label">{about.status}</p>
+    </div>
+
+    <p>
+      Available for robotics, embedded systems, and industrial automation internships or research
+      roles. Email is the fastest way to reach me.
+    </p>
+
+    <div class="contact-box">
+      <div class="email-row">
+        <span class="meta-label">Direct Email:</span>
+        <a href={`mailto:${about.email}`} class="mono email-link touch-target">
+          {about.email}
+        </a>
+        <button
+          type="button"
+          id="copy-email-btn"
+          class="touch-target copy-btn mono"
+          data-email={about.email}
+          hidden
+        >
+          Copy email
+        </button>
+        <span id="copy-status" class="mono copy-status" role="status" aria-live="polite"></span>
+      </div>
+
+      <ul class="social-row mono" aria-label="External profiles">
+        {
+          about.socials.map((s) => (
+            <li>
+              <a href={s.url} class="touch-target" rel="noopener noreferrer">
+                {s.label}: {s.url.replace(/^https?:\/\//, '')}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var btn = document.getElementById('copy-email-btn');
+      var status = document.getElementById('copy-status');
+      if (!btn || !navigator.clipboard) return;
+      btn.removeAttribute('hidden');
+      btn.addEventListener('click', function () {
+        var email = btn.getAttribute('data-email') || '';
+        navigator.clipboard.writeText(email).then(function () {
+          if (status) status.textContent = 'Copied to clipboard.';
+        });
+      });
+    })();
+  </script>
+</BaseLayout>
+
+<style>
+  .hero-section {
+    padding-block: var(--space-xl);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+  @media (min-width: 60rem) {
+    .hero-grid {
+      grid-template-columns: 1.15fr 1fr;
+    }
+  }
+  .hero-tagline {
+    font-size: var(--step-1);
+    color: var(--ink-secondary);
+    margin-top: 0;
+  }
+  .bio-prose {
+    color: var(--ink-primary);
+  }
+  .hero-links {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-lg) 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+  .primary-action {
+    background-color: var(--bg-panel);
+    border: 2px solid var(--accent-ui);
+    color: var(--ink-primary);
+    font-weight: 600;
+    padding-inline: var(--space-md);
+  }
+  .secondary-action {
+    background-color: var(--bg-paper);
+    border: 1px solid var(--border-strong);
+    color: var(--ink-primary);
+    padding-inline: var(--space-md);
+  }
+  .hero-featured {
+    padding: var(--space-md);
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-strong);
+  }
+  .featured-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--border-hairline);
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  @media (min-width: 56rem) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .timeline-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--border-hairline);
+  }
+  @media (min-width: 48rem) {
+    .timeline-item {
+      grid-template-columns: 16rem 1fr;
+    }
+  }
+  .timeline-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+  .org-name {
+    font-weight: 500;
+    color: var(--ink-secondary);
+  }
+  .highlight-list {
+    padding-left: 1.25rem;
+    margin: var(--space-xs) 0 0 0;
+  }
+  .cert-table thead th {
+    background-color: var(--bg-panel);
+    color: var(--ink-primary);
+    font-family: var(--font-mono);
+    width: auto;
+  }
+  @media (max-width: 42rem) {
+    .cert-table,
+    .cert-table thead,
+    .cert-table tbody,
+    .cert-table tr,
+    .cert-table th,
+    .cert-table td {
+      display: block;
+      width: 100%;
+    }
+    .cert-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
+    .cert-table tr {
+      padding-block: var(--space-xs);
+      border-bottom: 1px solid var(--border-strong);
+    }
+    .cert-table th,
+    .cert-table td {
+      border-bottom: none;
+      padding-block: 0.15rem;
+    }
+  }
+  .contact-box {
+    margin-top: var(--space-md);
+    padding: var(--space-md);
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-strong);
+  }
+  .email-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+  .email-link {
+    font-weight: 600;
+    font-size: var(--step-0);
+  }
+  .copy-btn {
+    background-color: var(--bg-paper);
+    color: var(--ink-primary);
+    border: 1px solid var(--border-strong);
+    cursor: pointer;
+    font-size: var(--step--1);
+  }
+  .copy-btn[hidden] {
+    display: none;
+  }
+  .copy-status {
+    font-size: var(--step--1);
+    color: var(--status-complete);
+  }
+  .social-row {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-sm) 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    font-size: var(--step--1);
+  }
+</style>

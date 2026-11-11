@@ -1,0 +1,182 @@
+---
+// src/components/SkillsMatrix.astro
+interface SkillGroup {
+  id: string;
+  category: string;
+  name: string;
+  description: string;
+  level: string;
+  evidence_projects: string[];
+  tags: string[];
+  tools: string[];
+}
+
+interface ProjectRef {
+  id: string;
+  slug: string;
+  title: string;
+}
+
+interface Props {
+  skills: SkillGroup[];
+  projects: ProjectRef[];
+}
+
+const { skills, projects } = Astro.props;
+const projectMap = new Map(projects.map((p) => [p.id, p]));
+---
+
+<div class="skills-table-wrap">
+  <table class="spec-table skills-matrix">
+    <caption class="sr-only">
+      Technical skills grouped by domain, experience level, and proving projects
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Domain / Skill</th>
+        <th scope="col">Scope & Tools</th>
+        <th scope="col">Level</th>
+        <th scope="col">Proving Projects</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        skills.map((sk) => {
+          const allItems = [...sk.tags, ...sk.tools];
+          const linkedProjects = sk.evidence_projects
+            .map((pid) => projectMap.get(pid))
+            .filter(Boolean) as ProjectRef[];
+          const displayLevel = sk.level === 'TODO' ? '—' : sk.level;
+
+          return (
+            <tr>
+              <th scope="row" class="skill-domain-cell">
+                <span class="meta-label block-label">{sk.category}</span>
+                <span class="skill-name">{sk.name}</span>
+              </th>
+              <td>
+                <p class="skill-desc">{sk.description}</p>
+                {allItems.length > 0 && (
+                  <ul class="inline-tags mono" aria-label={`${sk.name} tools and libraries`}>
+                    {allItems.map((t) => (
+                      <li>{t}</li>
+                    ))}
+                  </ul>
+                )}
+              </td>
+              <td class="mono level-cell">{displayLevel}</td>
+              <td>
+                {linkedProjects.length > 0 ? (
+                  <ul class="evidence-list">
+                    {linkedProjects.map((proj) => (
+                      <li>
+                        <a href={`/projects/${proj.slug}/`}>{proj.title}</a>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <span class="mono muted-note">Coursework / CAD</span>
+                )}
+              </td>
+            </tr>
+          );
+        })
+      }
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .skills-table-wrap {
+    overflow-x: auto;
+  }
+  .skills-matrix th,
+  .skills-matrix td {
+    padding: var(--space-sm);
+  }
+  .skills-matrix thead th {
+    background-color: var(--bg-panel);
+    color: var(--ink-primary);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    border-bottom: 2px solid var(--ink-primary);
+    width: auto;
+  }
+  .skill-domain-cell {
+    width: 22%;
+  }
+  .block-label {
+    display: block;
+    margin-bottom: var(--space-2xs);
+  }
+  .skill-name {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: var(--step-0);
+    color: var(--ink-primary);
+  }
+  .skill-desc {
+    margin: 0 0 var(--space-xs) 0;
+    color: var(--ink-secondary);
+  }
+  .inline-tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    font-size: var(--step--1);
+  }
+  .inline-tags li {
+    padding: 0.1rem 0.45rem;
+    background-color: var(--bg-code);
+    border: 1px solid var(--border-hairline);
+  }
+  .level-cell {
+    width: 16%;
+    color: var(--ink-secondary);
+    white-space: nowrap;
+  }
+  .evidence-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    font-size: var(--step--1);
+  }
+  .muted-note {
+    color: var(--ink-muted);
+    font-size: var(--step--1);
+  }
+
+  /* Stack cleanly on small mobile screens (320px+) so there is never horizontal page overflow */
+  @media (max-width: 48rem) {
+    .skills-matrix,
+    .skills-matrix thead,
+    .skills-matrix tbody,
+    .skills-matrix tr,
+    .skills-matrix th,
+    .skills-matrix td {
+      display: block;
+      width: 100%;
+    }
+    .skills-matrix thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
+    .skills-matrix tr {
+      padding-block: var(--space-sm);
+      border-bottom: 2px solid var(--border-strong);
+    }
+    .skills-matrix td {
+      border-bottom: none;
+      padding-block: var(--space-2xs);
+    }
+  }
+</style>
